@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="900.0" spacing="12.0"
+      style="-fx-background-color: #031838;"
+      xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controllers.SqlCrudController">
+
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+
+    <children>
+        <!-- Título Principal -->
+        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Panel de Control CRUD SQL - `its5a`" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+            <VBox.margin>
+                <Insets bottom="5.0" />
+            </VBox.margin>
+        </Label>
+
+        <!-- Contenedor Principal (Panel Izquierdo + Panel Derecho) -->
+        <HBox spacing="15.0" VBox.vgrow="ALWAYS">
+            <children>
+
+                <!-- Panel Izquierdo: Lista de Tablas y Botones -->
+                <VBox prefWidth="240.0" spacing="10.0">
+                    <children>
+                        <Label text="Tablas de la Base de Datos" textFill="#8bb4f6">
+                            <font>
+                                <Font name="System Bold" size="15.0" />
+                            </font>
+                        </Label>
+
+                        <ListView fx:id="listaTablas" VBox.vgrow="ALWAYS"
+                                  style="-fx-background-color: #031838; -fx-control-inner-background: #031838; -fx-border-color: #2a52be; -fx-border-width: 1.5px; -fx-border-radius: 8px; -fx-background-radius: 8px; -fx-text-fill: white;">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="roles" />
+                                    <String fx:value="usuarios" />
+                                    <String fx:value="productos" />
+                                    <String fx:value="pedidos" />
+                                    <String fx:value="clientes" />
+                                    <String fx:value="ventas" />
+                                    <String fx:value="proveedores" />
+                                    <String fx:value="inventario" />
+                                    <String fx:value="logins" />
+                                </FXCollections>
+                            </items>
+                        </ListView>
+
+                        <Button fx:id="btnVolverDescargas" maxWidth="1.7976931348623157E308" onAction="#volverDescargas" prefHeight="45.0"
+                                style="-fx-background-color: #2575fc; -fx-background-radius: 8; -fx-text-fill: white; -fx-cursor: hand;" text="Volver a Descargas">
+                            <font>
+                                <Font name="System Bold" size="15.0" />
+                            </font>
+                        </Button>
+
+                        <Button fx:id="btnSalir" maxWidth="1.7976931348623157E308" onAction="#salir" prefHeight="45.0"
+                                style="-fx-background-color: #2575fc; -fx-background-radius: 8; -fx-text-fill: white; -fx-cursor: hand;" text="Salir">
+                            <font>
+                                <Font name="System Bold" size="15.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </VBox>
+
+                <!-- Panel Derecho: Editor, Resultados y Estado -->
+                <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                    <children>
+
+                        <!-- Editor SQL -->
+                        <Label text="Editor SQL" textFill="#8bb4f6">
+                            <font>
+                                <Font name="System Bold" size="15.0" />
+                            </font>
+                        </Label>
+                        <TextArea fx:id="txtEditorSql" prefHeight="80.0" text="SELECT * FROM usuarios;"
+                                  style="-fx-control-inner-background: #031838; -fx-border-color: #2a52be; -fx-border-width: 1.5px; -fx-border-radius: 8px; -fx-background-radius: 8px; -fx-text-fill: white; -fx-font-family: 'Monospaced';" wrapText="true" />
+
+
+                        <HBox alignment="CENTER_LEFT">
+                            <children>
+                                <Label text="Cuadrícula de Resultados de Datos" textFill="#8bb4f6" HBox.hgrow="ALWAYS">
+                                    <font>
+                                        <Font name="System Bold" size="15.0" />
+                                    </font>
+                                </Label>
+                                <HBox alignment="CENTER_RIGHT" spacing="10.0" HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <Button fx:id="btnAgregar" onAction="#agregarRegistro" style="-fx-background-color: transparent; -fx-text-fill: #8bb4f6; -fx-cursor: hand;" text="(+) ">
+                                            <font><Font name="System Bold" size="14.0" /></font>
+                                        </Button>
+                                        <Button fx:id="btnEditar" onAction="#editarRegistro" style="-fx-background-color: transparent; -fx-text-fill: #8bb4f6; -fx-cursor: hand;" text="(Editar)">
+                                            <font><Font name="System Bold" size="14.0" /></font>
+                                        </Button>
+                                        <Button fx:id="btnEliminar" onAction="#eliminarRegistro" style="-fx-background-color: transparent; -fx-text-fill: #ff6b6b; -fx-cursor: hand;" text="(borrar)">
+                                            <font><Font name="System Bold" size="14.0" /></font>
+                                        </Button>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </HBox>
+
+
+                        <TableView fx:id="tablaResultados" style="-fx-background-color: #031838; -fx-control-inner-background: #031838; -fx-border-color: #2a52be; -fx-border-width: 1.5px; -fx-border-radius: 8px; -fx-background-radius: 8px;" VBox.vgrow="ALWAYS">
+                            <columns>
+                                <TableColumn prefWidth="50.0" text="id" />
+                                <TableColumn prefWidth="120.0" text="username" />
+                                <TableColumn prefWidth="180.0" text="email" />
+                                <TableColumn prefWidth="80.0" text="rol" />
+                                <TableColumn prefWidth="60.0" text="active" />
+                                <TableColumn prefWidth="110.0" text="last_login" />
+                            </columns>
+                        </TableView>
+
+                        <Button fx:id="btnEjecutar" maxWidth="1.7976931348623157E308" onAction="#ejecutarConsulta" prefHeight="45.0"
+                                style="-fx-background-color: #2575fc; -fx-background-radius: 8; -fx-text-fill: white; -fx-cursor: hand;" text="Ejecutar Consulta">
+                            <font>
+                                <Font name="System Bold" size="15.0" />
+                            </font>
+                        </Button>
+
+                        <VBox style="-fx-border-color: #2a52be; -fx-border-width: 1.5px; -fx-border-radius: 8px; -fx-padding: 8px;">
+                            <children>
+                                <Label text="Estado" textFill="#8bb4f6">
+                                    <font>
+                                        <Font name="System Bold" size="12.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="lblEstado" text="Conectado a its5a... 15 registros encontrados." textFill="WHITE">
+                                    <font>
+                                        <Font size="13.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </VBox>
+
+                    </children>
+                </VBox>
+
+            </children>
+        </HBox>
+    </children>
+</VBox>

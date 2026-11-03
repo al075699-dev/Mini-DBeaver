@@ -1,0 +1,33 @@
+Para la conexión de java sql segui esta serie de videos
+https://www.youtube.com/watch?v=835KmntBcU4
+
+Para la conexión SQLite me base en este video
+https://www.youtube.com/watch?v=m3wPdSWl-G8&t=180s
+
+Prompts:
+
+- Explicame que es un túnel ssh y como funciona
+
+- Como abro una conexión ssh con JSch?
+
+- Explicame para que sirve Connection, Statement, PreparedStatement y ResultSet en JDBC
+
+- Como uso Stage, Scene y FXMLLoader?
+
+- Como muestro un cuadro de Dialog?
+
+- En necesario mapear una base de datos remota a una local o puedo simplemente descargarla y sincronizarla por separado?
+
+- Como uso excepciones apropósito?
+
+- Cual es la diferencia entre un try y un try with resources?
+
+- Como comparto información entre pantallas?
+
+- Puedo usar el driver de MySQL para cualquier base de datos?
+
+- Que tipo de datos diferencian SQLite de sql?
+
+- Que queries puedo usar para ver como esta definida mi base de datos?
+
+- Como uso variables de entorno con intelliJ?
